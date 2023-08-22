@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"log"
 	"regexp"
 	"strconv"
 	"strings"
@@ -152,7 +151,7 @@ func (d Dialector) RewriteLimit11(c clause.Clause, builder clause.Builder) {
 				sqltmp.WriteString(sqlold[:orderindx])
 				sqltmp.WriteString(limitsql.String())
 				sqltmp.WriteString(sqlold[orderindx:])
-				log.Println(sqltmp.String())
+				//log.Println(sqltmp.String())
 				stmt.SQL = sqltmp
 			}
 		}
