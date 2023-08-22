@@ -6,7 +6,7 @@
 GORM Oracle driver for connect Oracle DB and Manage Oracle DB, Based on [CengSin/oracle](https://github.com/CengSin/oracle)
 ，not recommended for use in a production environment
 ## DB Driver
-[godror](https://github.com/godror/godror) A pure golang development of Oracle driver, do not need to install Oracle client.
+[godror](https://github.com/godror/godror) 
 ## Required dependency Install
 
 - Oracle 12C+
