@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-    dsn := "oracle://system:manager@127.0.0.1:1521/orcl"
+    dsn := "oracle://system:password@127.0.0.1:1521/orcl"
     db, err := gorm.Open(oracle.Open(dsn), &gorm.Config{})
     if err != nil {
         // panic error or log error info
