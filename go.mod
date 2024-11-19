@@ -1,4 +1,4 @@
-module github.com/dzwvip/oracle
+module github.com/horsing/oracle
 
 go 1.14
 
