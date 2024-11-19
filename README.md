@@ -18,14 +18,14 @@ Another library that uses the go-ora driver, [gorm-oracle](https://github.com/dz
 ## Quick Start
 ### how to install 
 ```bash
-go get github.com/horsing/oracle
+go get github.com/dzwvip/oracle
 ```
 ###  usage
 
 ```go
 import (
 	"fmt"
-	"github.com/horsing/oracle"
+	"github.com/dzwvip/oracle"
 	"gorm.io/gorm"
 	"log"
 )

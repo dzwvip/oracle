@@ -21,12 +21,11 @@ import (
 )
 
 type Config struct {
-	DriverName          string
-	DSN                 string
-	Conn                gorm.ConnPool //*sql.DB
-	DefaultStringSize   uint
-	DBVer               string
-	NamingCaseSensitive bool // whether naming is case-sensitive
+	DriverName        string
+	DSN               string
+	Conn              gorm.ConnPool //*sql.DB
+	DefaultStringSize uint
+	DBVer             string
 }
 
 type Dialector struct {
@@ -50,11 +49,7 @@ func (d Dialector) Name() string {
 }
 
 func (d Dialector) Initialize(db *gorm.DB) (err error) {
-	db.NamingStrategy = Namer{
-		NamingStrategy: db.NamingStrategy,
-		CaseSensitive:  d.NamingCaseSensitive,
-	}
-
+	db.NamingStrategy = Namer{db.NamingStrategy.(schema.NamingStrategy)}
 	d.DefaultStringSize = 1024
 
 	// register callbacks
@@ -71,9 +66,6 @@ func (d Dialector) Initialize(db *gorm.DB) (err error) {
 		db.ConnPool = d.Conn
 	} else {
 		db.ConnPool, err = sql.Open(d.DriverName, d.DSN)
-		if err != nil {
-			return err
-		}
 	}
 	err = db.ConnPool.QueryRowContext(context.Background(), "select version from product_component_version where rownum = 1").Scan(&d.DBVer)
 	if err != nil {
@@ -135,7 +127,7 @@ func (d Dialector) RewriteLimit(c clause.Clause, builder clause.Builder) {
 	}
 }
 
-// Oracle11 Limit
+//Oracle11 Limit
 func (d Dialector) RewriteLimit11(c clause.Clause, builder clause.Builder) {
 	if limit, ok := c.Expression.(clause.Limit); ok {
 		if stmt, ok := builder.(*gorm.Statement); ok {
