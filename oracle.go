@@ -127,7 +127,7 @@ func (d Dialector) RewriteLimit(c clause.Clause, builder clause.Builder) {
 	}
 }
 
-//Oracle11 Limit
+// Oracle11 Limit
 func (d Dialector) RewriteLimit11(c clause.Clause, builder clause.Builder) {
 	if limit, ok := c.Expression.(clause.Limit); ok {
 		if stmt, ok := builder.(*gorm.Statement); ok {
